@@ -1,0 +1,34 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>
+
+        <script>
+
+            let webSocket = new WebSocket('ws://localhost:8080');
+            webSocket.onopen = function(response) {
+                webSocket.send('Hello World');
+            };
+
+            webSocket.onmessage = function(response) {
+                console.log("Resposta do WebSocket: "+response.data);
+            };
+
+            webSocket.onclose = function(response) {
+                console.log("Conexão fechada"+response);
+            };
+
+            webSocket.onerror = function(error) {
+                console.log("Deu ruim :-("+error);
+            };
+
+            function envia() {
+                webSocket.send('Alguma coisa');
+            }
+        </script>
+
+        <button onclick="envia();" >Envia</button>
+    </body>
+</html>
